@@ -1,0 +1,11 @@
+.outerbox {
+    display: flex;
+    align-items: center;
+    justify-Content: center;
+}
+
+.midbox {
+    display: flex;
+    align-items: center;
+    justify-Content: center;
+}

@@ -1,18 +1,16 @@
-import NestedSquares from './components/Squares';
-
-import logo from './logo.svg';
-import './App.css';
 import { useEffect, useState } from 'react';
 
+import NestedSquares from './components/NestedSquares';
+
+import style from './App.module.css';
+
 function App() {
-  const [windowSize, setWindowSize] = useState(0);
+  const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
 
   useEffect(() => {
     const onResize = () => {
       setWindowSize(() => [window.innerWidth, window.innerHeight]);
     }
-
-    onResize();
 
     window.addEventListener("resize", onResize);
 
@@ -20,10 +18,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{ display: "flex", height: "100vh", width: "100vw", alignItems: "center", justifyContent: "center" }}>
+    <div className={style.app}>
       <NestedSquares side={Math.min(windowSize[0], windowSize[1]) / 2} nestAmount={4} id="nested-squares">
-        <div style={{ display: "flex", flex: "1 1 100%", backgroundColor: "white", padding: "20pt", fontSize: "8pt", textAlign: "justify", overflow: "hidden", whiteSpace: "normal", textOverflow: "ellipsis" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus
+        <div className={style.content}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus
         </div>
       </NestedSquares>
     </div>
