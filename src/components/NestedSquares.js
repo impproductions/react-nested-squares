@@ -1,26 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 
-import { scale, scaleUpTo } from "./SquaresUtilities";
+import { scale, scaleNested } from "./SquaresUtilities";
 import styles from "./NestedSquares.module.css";
 import Squares from "./Squares";
 
 function NestedSquares({ side, nestAmount = 1, children, ...restProps }) {
     const [angle, setAngle] = useState(0);
     const container = useRef(null);
-    
+
     const containerId = "container-" + restProps.id;
     const nesting = nestAmount || 1;
 
     const innerAngle = () => -angle * (nesting) / 4;
-    const innerScale = () => scaleUpTo(side, angle, nesting) * scale(side * scale(side, angle), angle * (nesting));
+    const innerScale = () => scaleNested(side, angle, nesting) * scale(side * scale(side, angle), angle * (nesting));
 
     useEffect(() => {
         const mouseMove = (e) => {
             const outerBox = container.current.getBoundingClientRect();
-            const [cx, cy] = [outerBox.left + outerBox.width / 2, outerBox.top + outerBox.height / 2];
-            const [px, py] = [Number(e.clientX), Number(e.clientY)];
+            const [cornerX, cornerY] = [outerBox.left, outerBox.top];
+            const [centerX, centerY] = [outerBox.left + outerBox.width / 2, outerBox.top + outerBox.height / 2];
+            const [pointerX, pointerY] = [Number(e.clientX), Number(e.clientY)];
 
-            setAngle(Math.round(Math.atan2(py - cy, px - cx) * 180 / Math.PI + 180) % 360);
+            const radius = Math.sqrt((centerX-cornerX) ** 2 + (centerY-cornerY) ** 2)
+
+            setAngle(Math.max(180 - (Math.sqrt((centerX - pointerX) ** 2 + (centerY - pointerY) ** 2) / radius) * 180, 0));
         }
 
         window.addEventListener("mousemove", mouseMove);
@@ -38,7 +41,7 @@ function NestedSquares({ side, nestAmount = 1, children, ...restProps }) {
                             {...restProps}
                             key={restProps.id + "-" + i}
                             id={restProps.id + "-" + i}
-                            side={scaleUpTo(side, angle, nesting - i - 1) * side}
+                            side={scaleNested(side, angle, nesting - i - 1) * side}
                             angle={angle}
                         >
                             {p}

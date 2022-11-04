@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { convertAngle, randomColor, scale } from "./SquaresUtilities";
 
 import styles from "./Squares.module.css";
-
 function Squares({ side, angle, children, ...restProps }) {
     const [innerBgColor, setInnerBgColor] = useState(randomColor());
     const [outerBgColor, setOuterBgColor] = useState(randomColor());
