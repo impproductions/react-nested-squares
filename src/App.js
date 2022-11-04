@@ -21,11 +21,9 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", height: "100vh", width: "100vw", alignItems: "center", justifyContent: "center" }}>
-      <NestedSquares side={Math.min(windowSize[0], windowSize[1]) / 2} nestAmount={1}>
-        <div style={{ display: "flex", height: "100%", width: "100%", border: "1px solid red" }}>
-          <div style={{ flex: "1 0 100%", fontSize: "1%", display: "flex", minHeight: "100%", minWidth: "100%", border: "1px solid blue", alignItems: "center", justifyContent: "center", maxHeight: "100%", maxWidth: "100%", flexGrow: 1, fontSize: "8pt", textAlign: "justify", overflow: "hidden", whiteSpace: "normal", textOverflow: "ellipsis" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus
-          </div>
+      <NestedSquares side={Math.min(windowSize[0], windowSize[1]) / 2} nestAmount={4} id="nested-squares">
+        <div style={{ display: "flex", flex: "1 1 100%", backgroundColor: "white", padding: "20pt", fontSize: "8pt", textAlign: "justify", overflow: "hidden", whiteSpace: "normal", textOverflow: "ellipsis" }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus
         </div>
       </NestedSquares>
     </div>
