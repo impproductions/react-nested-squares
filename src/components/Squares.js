@@ -1,15 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { convertAngle, randomColor, scale } from "./SquaresUtilities";
+import { convertAngle, randomColor, scale } from "./squaresHelpers";
 
 import styles from "./Squares.module.css";
 function Squares({ side, angle, children, ...restProps }) {
-    const [innerBgColor, setInnerBgColor] = useState(randomColor());
-    const [outerBgColor, setOuterBgColor] = useState(randomColor());
+    const [bgColor, setBgColor] = useState(randomColor());
 
     useEffect(() => {
-        setInnerBgColor(randomColor());
-        setOuterBgColor(randomColor());
+        setBgColor(randomColor());
     }, []);
 
     return (
@@ -20,7 +18,6 @@ function Squares({ side, angle, children, ...restProps }) {
             style={{
                 width: side + "px",
                 height: side + "px",
-                backgroundColor: outerBgColor
             }}>
             <div
                 id={"mid-box-" + restProps.id}
@@ -30,7 +27,7 @@ function Squares({ side, angle, children, ...restProps }) {
                     width: side * scale(side, angle) + "px",
                     height: side * scale(side, angle) + "px",
                     transform: "rotateZ(" + (45 + Number(convertAngle(angle))) + "deg)",
-                    backgroundColor: innerBgColor
+                    backgroundColor: bgColor,
                 }}>
                 {children}
             </div>

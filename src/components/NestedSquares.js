@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { scale, scaleNested } from "./SquaresUtilities";
+import { scale, scaleNested } from "./squaresHelpers";
 import styles from "./NestedSquares.module.css";
 import Squares from "./Squares";
 
@@ -35,7 +35,7 @@ function NestedSquares({ side, nestAmount = 1, children, ...restProps }) {
     return (
         <div id={containerId} ref={container}>
             {
-                Array(nesting).fill(null).reduce((p, c, i) => {
+                [...Array(nesting)].reduce((p, c, i) => {
                     return (
                         <Squares
                             {...restProps}
@@ -58,7 +58,7 @@ function NestedSquares({ side, nestAmount = 1, children, ...restProps }) {
                             maxHeight: side + "px",
                             transform: "rotateZ(" + innerAngle() + "deg) scale(" + innerScale(side, angle) + ")",
                         }}>
-                        <div id={"content"} style={{ display: "flex" }}>
+                        <div id={"content"} style={{ display: "flex", alignContent: "stretch", justifyContent: "stretch", width: "100%", flex: "1 0 100%" }}>
                             {children}
                         </div>
                     </div>

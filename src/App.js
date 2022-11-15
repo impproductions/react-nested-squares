@@ -19,9 +19,9 @@ function App() {
 
   return (
     <div className={style.app}>
-      <NestedSquares side={Math.min(windowSize[0], windowSize[1]) / 2} nestAmount={7} id="nested-squares">
+      <NestedSquares side={Math.min(windowSize[0], windowSize[1]) / 2} nestAmount={10} id="nested-squares">
         <div className={style.content}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, aumquam nescimus blatere dispute teresio aestuntus
+          <button className={style.shiny} onClick={() => alert("Congratulations!")}>Click me</button>
         </div>
       </NestedSquares>
     </div>
